@@ -1,0 +1,241 @@
+header {
+    height: 50vh;
+    display: flex;;
+}
+.info {
+    margin-top: 100px;
+    height: 100px;
+    width: 100%;
+    margin-left: 175px;
+}
+
+.info p:nth-last-child(2){
+    font-size: 3rem;
+    color: white;
+    font-weight: bolder;
+}
+
+.info p{
+    color: white;
+    font-size: 1.2rem;
+}
+
+.search_hotel {
+    height: 100px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin-left: 5%;
+    margin-bottom: 115px;
+}
+
+.search_hotel input {
+    height: 55px;
+    width: 210px;
+    margin-inline:5px;
+    padding-inline: 10px;
+    font-weight: 600;
+    font-size: 1.3rem;
+    border-radius: 10px;
+    box-shadow: 2.5px 2.5px 1px rgba(255,255,255,0.1);
+    outline: none;
+}
+
+.search_hotel input::placeholder{
+    padding-inline: 5px;
+    font-size: 0.8em;
+    color: #000;
+    font-weight: 550;
+}
+
+.search_hotel .inputs label {
+    margin-left: 15%;
+    position: absolute;
+    bottom: 5px;
+    font-weight: 600;
+    transition: 1s;
+    color: #fff;
+}
+.search_hotel input[type="submit"]{
+    height: 40px;
+    width: 90px;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    font-weight: 550;
+    margin-inline:30px;
+}
+
+#search_destiny {
+    margin: 50px 0px ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#search_destiny p {
+    font-size: 1.7rem;
+    color: #808080;
+    font-weight: 550;
+    padding: 10px 0px;
+}
+#search_destiny .inputs_search {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    width: 100%;
+}
+
+#search_destiny .inputs_search div {
+    margin-inline: 40px;
+}
+
+#search_destiny .inputs_search .inputs {
+    height: 30px;
+    width: 205px;
+    border :1.7px solid goldenrod;
+    border-radius: 8px;
+}
+
+#search_destiny .inputs_search .inputs input , #search_destiny .inputs_search .inputs select {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    outline: none;
+    height: 100%;
+    width: 100%;
+    padding-left: 10px;
+}
+#search_destiny .inputs_search .inputs input::placeholder , #search_destiny .inputs_search .inputs select{
+    color: #fff;
+    font-size: 1.0rem;
+}
+#search_destiny .inputs_search .inputs select{
+    position: relative;
+}
+#search_destiny .inputs_search .inputs input {
+    color: #fff;
+    text-align: center;
+ }
+
+#search_destiny .inputs_search .inputs select optgroup  {
+    color: #000;
+    font-weight: 550;
+}
+#search_destiny .inputs_search .inputs select option{
+    color: #000;
+    font-weight: 500;
+    padding: 5px 0px;
+    transition: 1s;;
+}
+
+#search_destiny .inputs_search .inputs details option:hover {
+    color: lightslategray;
+}
+#search_destiny .inputs_search .inputs:has(input[type="submit"]) {
+    all: initial;
+    padding-inline: 50px;
+}
+#search_destiny .inputs_search .inputs input[type="submit"]{
+    color: #fff;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    background-color: gold;
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    font-weight: 650;
+}
+
+#destinations {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px;
+}
+
+#destinations p {
+    padding: 20px 0px;
+    color: #808080;
+    font-size: 1.7rem;
+    font-weight: 600;
+
+}
+
+.imagens_turismo {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.imagens_turismo .imagem{
+    width: 400px;
+    height: 500px;
+    border: 2px solid gold;
+    margin: 10px 0px  ;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    transform: skewX(-1deg)
+}
+
+.imagens_turismo .imagem figure {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.imagens_turismo .imagem figure img{
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    transition: .5s;
+    transform: scaleX(1.05);
+}
+
+.imagens_turismo .imagem img:hover{
+    height: 100%;
+
+}
+.imagens_turismo .imagem figure figcaption {
+    padding: 5px 0px;
+    height: 10%;
+    width: 100%;
+    color: #fff;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.imagens_turismo .imagem .categorias {
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.imagens_turismo .imagem .categorias label {
+    font-size: 2.54rem;
+    padding-inline: 5px;
+    color: #808080;
+}
+.imagens_turismo .imagem:nth-child(2n) .categorias label:nth-child(n):not(:last-of-type){
+    color: goldenrod;
+}
+
+
+.imagens_turismo .imagem:nth-child(2n-1) .categorias label{
+    color: goldenrod;
+}
+

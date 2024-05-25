@@ -1,0 +1,103 @@
+
+/* Css dos Dados Da Bd*/
+
+.carros {
+    width: 75vw;
+    border-radius: 20px;
+    background-color: rgba(255,255,255,0.2);
+    margin: 0 auto;
+    z-index: 5;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-direction: column;
+}
+table{
+    margin: 10px auto 5px auto;
+    border-collapse: collapse;
+}
+tr ,td{
+    border-top: 0.5px solid white;
+    border-bottom: 0.5px solid white;
+    color: #fff;
+    font-weight: 500;
+}
+
+ thead th {
+    border-top: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: black;
+}
+
+td,th {
+    width:180px ;
+    height: 40px;
+    font-size: 1.3rem;
+    padding-inline:10px;
+    text-align: center;
+    text-transform: capitalize;
+}
+td {
+    font-style: oblique;
+}
+
+.carros .alugar {
+    font-size: 1.2rem;
+    width: 120px;
+    height: 35px;
+    border: 2px solid #fff;
+    color: black;
+    font-weight: bolder;
+    margin: 15px;
+    border-radius: 5px;
+    background-color: transparent;
+    transition: 1s;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.carros .alugar:hover {
+    background-color: #fff;
+ 
+}
+
+.esconderForm {
+    display: none;
+}
+
+form{
+    margin: 50px 0px;
+}
+
+form input {
+    outline: none;
+    width: 180px;
+    height: 35px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-weight: 600;
+    margin-inline: 10px;
+    padding-left:10px ;
+    text-align: center;
+}
+
+form input::placeholder{
+    font-size: 1.1rem;
+    color: black;
+    text-align: center;
+}
+
+form input[type="submit"]{
+    width: 150px;
+    height: 35px;
+    text-align: center;
+    font-size: 1.1rem;
+    color: black;
+    background-color: goldenrod;
+    border: 5px;
+    font-weight: bolder;
+    border: 1.4px solid white;
+    padding-left: 0;
+}

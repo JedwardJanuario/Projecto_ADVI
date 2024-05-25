@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login-Register</title>
+    <link rel="stylesheet" href="/css/login-register.css">
+    <script defer src="/js/login-register.js"></script>
+</head>
+<body>
+
+    <div class="form_box">
+        <form action="/Admin" method="post" class="container login">
+            <h2>Login</h2>
+            <div class="inputs">
+               <input type="text" required name="nome">
+               <label for="nome">Nome de Usuario</label>
+               <img src="/img/icones/icons8-usuário-48.png" alt="Usuário"> 
+            </div>
+            <div class="inputs">
+               <input  type="password" required name="senha" class="inputpassword1">
+               <label for="nome">Senha</label>
+               <img class="img_block" src="/img/icones/icons8-trancar-60.png" alt="Usuário">
+            </div>
+            <div class="remember_fogotten">
+                <span ><input type="checkbox" >Lembrar me</span>  <a href="/Recuperacao">Esqueceu a Senha ?</a>  
+            </div>
+            <button type="submit">Login</button>
+            <div> Não tens uma Conta ? <a href="#" class="register_link">Cadastrar-se</a></div>
+        </form>
+       
+        <form action="/criarconta" method="post" class="container register altura">
+            <h2>Cadastro</h2>
+            <div class="inputs">
+                <input type="text" required name="cnome">
+                <label for="nome">Nome de Usuário</label>
+                <img src="/img/icones/icons8-usuário-48.png" alt="Usuário"> 
+            </div>           
+            <div class="inputs">
+            <input type="email" required name="cemail">
+            <label for="nome">Email</label>
+            <img src="/img/icones/icons8-nova-mensagem-60.png" alt="Usuário"> 
+            </div>
+            <div class="inputs">
+                <input  type="password" required name="csenha"  class="inputpassword2">
+                <label for="nome">Senha</label>
+                <img class="img_block2" src="/img/icones/icons8-trancar-60.png" alt="Usuário">
+            </div>
+            <div class="inputs">
+                <input type="password" required class="inputpassword3">
+                <label for="nome">Confirme Senha</label>
+                <img  class="img_block3" src="/img/icones/icons8-trancar-60.png" alt="Usuário">
+            </div>            
+            <div class="remember_fogotten">
+                <span ><input type="checkbox" > Concordo com os termos e condições</span>  
+            </div>
+            <button type="submit">Cadastrar</button>
+            <div> Já tens uma Conta ? <a href="#" class="login_link">Login</a></div>
+        </form>
+    </form>
+
+
+</body>
+</html>

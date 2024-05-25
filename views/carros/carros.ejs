@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carros</title>
+    <link rel="stylesheet" href="/css/header_footer.css">
+    <link rel="stylesheet" href="/css/carros.css">
+    <link rel="stylesheet" href="/css/pesquisa.css">
+    <script defer src="/js/pesquisa.js"></script>
+</head>
+<body>
+    
+    <header>
+        <input type="checkbox" name="" id="menu_ocultado">
+         <nav class="header">
+            <div class="logo">
+                <img src="/img/logos/logo (1).png" alt=""><span>ADVI</span>
+            </div>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/marcacoes">Voos</a></li>
+                <li><a href="/hotel" >Hoteis</a></li>
+                <li><a href="/carros">Carros</a></li>
+                <li><a href="/casas">Casas</a></li>
+                <li><a href="#sobre_nos">Sobre Nós</a></li>
+            </ul>
+        </nav>
+        <div class="info">
+            <p>Encontre os carros dos seus Sonhos</p>
+            <p>Carros desportivos , bonitos , seguros e a preços acessíveis !</p>
+        </div>
+
+    </header>
+    <main>
+        
+        <section id="search_destiny">
+            <p> Encontre os melhores carros do mercado</p>
+            <form action="/buscarCarros" method="post"  class="inputs_search">
+                <div class="inputs">
+                    <input type="text" name="tipo" placeholder="Tipo">
+                </div>
+               <div class="inputs">
+                    <input type="submit" class="procurar" value="Procurar">
+               </div>
+            </form>
+        </section>
+
+        <% if(carros == null || carros == 0){%>
+        <p></p>
+        <%} else {%>
+        <div class="carros">
+                <table>
+                    <thead>
+                        <th>numero</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Matricula</th>
+                        <th>Valor por dia ($)</th>
+                    </thead>
+                    <tbody>
+                        <% carros.forEach(function(dado){ %>
+                            <tr>
+                                <td><%- dado.id %></td>
+                                <td><%- dado.marca %></td>
+                                <td><%- dado.modelo %></td>
+                                <td><%- dado.matricula%></td>
+                                <td><%- dado.valor %></td>
+                            </tr>
+                        <%});%>
+                    </tbody>
+                </table>
+                <button class="alugar">Alugar</button>
+            <%};%>
+            <form action="/alugarCarro" method="post" class="esconderForm formulario">
+                <input type="number" required placeholder="Numero do Carro" name="idcarro">
+                <input type="text" required placeholder="local de Entrega cidade e país" name="localEntrega">
+                <input type="text" required placeholder="local de Devolução cidade e país" name="localDevolucao">
+                <input type="submit" value="Efectuar Aluguer" class="efectuarAluguer">
+            </form>
+        </div>
+        <section id="destinations">
+            <p> Carros Modernos mais Populares </p>
+            <div class="imagens_turismo">
+                <div class="imagem">
+                    <figure>
+                        <img src="/img/carros/carro (1).jpg" alt="">
+                        <figcaption> Preço 20€ por Dia  </figcaption>
+                    </figure>
+                </div>
+                <div class="imagem">
+                    <figure>
+                        <img src="/img/carros/carro (1).png" alt="">
+                        <figcaption> Preço 200€ por Dia  </figcaption>
+                    </figure>
+                </div>
+                <div class="imagem">
+                    <figure>
+                        <img src="/img/carros/carro (2).jpg" alt="">
+                        <figcaption>Preço 300€ por Dia</figcaption>
+                    </figure>
+                </div>
+                <div class="imagem">
+                    <figure>
+                        <img src="/img/carros/carro (3).jpg" alt="">
+                        <figcaption>Preço 160€ por Dia</figcaption>
+                    </figure>
+                </div>
+               
+                <div class="imagem">
+                    <figure>
+                        <img src="/img/carros/carro (4).jpg" alt="">
+                        <figcaption>Preço 100€ por Dia</figcaption>
+                    </figure>
+                </div>
+                <div class="imagem">
+                    <figure>
+                        <img src="/img/carros/carro (4).png" alt="">
+                        <figcaption>Preço 25€ por Dia </figcaption>
+                    </figure>
+                </div>
+                <div class="imagem">
+                    <figure>
+                        <img src="/img/carros/carro (5).jpg" alt="">
+                        <figcaption>Preço 270€ por Dia </figcaption>
+                    </figure>
+                </div>
+                <div class="imagem">
+                    <figure>
+                        <img src="/img/carros/carro (7).jpg" alt="">
+                        <figcaption> Preço 290€ por Dia</figcaption>
+                    </figure>
+                </div>
+                <div class="imagem">
+                    <figure>
+                        <img src="/img/carros/carro (1).png" alt="">
+                        <figcaption>Preço 260€ por Dia</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer>
+        <div class="rodape">
+            <div class="describe_text" id="sobre_nos" >
+                <p> ADVI Agência de Viagens Internacionais </p>
+                <div>
+                    ADVI  é uma empresa público ao dispor de todo aquele que quiser
+                    pagar pelo nossos serviços tendo garantias de conforto, segurança e melhor preço disponível.
+                    Viage connosco
+                </div>    
+            </div>
+            <div class="services_informations">
+                <div>
+                    <p>Informação</p>
+                    <ul>
+    
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contacte - nos</a></li>
+                        <li><a href="#">Caracterísiticas</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p>Localização</p>
+                    <ul>
+                        <li><a href="#">Europa</a></li>
+                        <li><a href="#"> Asia</a></li>
+                        <li><a href="#">America</a></li>
+                        <li><a href="#">Africa</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p>Serviços de Transporte</p>                    
+                    <ul>
+                        <li><a href="#">Alimentos</a></li>
+                        <li><a href="#">Carros</a></li>
+                        <li><a href="#">Equipamentos informáticos</a></li>
+                        <li><a href="#">Viagens Particulares</a></li>    
+                    </ul>
+                </div>
+                <div>
+                    <p>Blog</p>
+                    <ul>    
+                        <li><a href="#">Licença</a></li>
+                        <li><a href="#">Converse connosco</a></li>
+                        <li><a href="#">Informações</a></li>
+                        <li><a href="#">Acessória</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="copy">
+            <div>
+                <p> 2024 &copyCopyright ADVI</p>
+                <p> Política Prividade no uso de Cookies e conditions </p>
+            </div>
+            <figure class="redes_sociais">
+                <img src="/img/icones/icons8-linkedin-48.png" alt="Imagem Linkedin">
+                <img src="/img/icones/icons8-telegram-app-48.png" alt="Imagem telegram">
+                <img src="/img/icones/icons8-whatsapp-48.png" alt="Imagem Whatsaap" >
+                <img src="/img/icones/icons8-twitterx-60.svg" alt="Imagem Do Twitter X">
+            </figure>   
+       </div>
+    </footer>
+</body>
+</html>

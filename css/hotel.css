@@ -1,0 +1,219 @@
+header {
+    height: 60vh;
+}
+
+/*Descricao*/
+.info {
+    height: 100px;
+    width: 100%;
+    margin-left: 175px;
+}
+
+.info p:nth-last-child(2){
+    font-size: 3rem;
+    color: white;
+    font-weight: bolder;
+}
+
+.info p{
+    color: white;
+    font-size: 1.2rem;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: oblique;
+}
+
+.search_hotel {
+    height: 100px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin-left: 5%;
+    margin-bottom: 115px;
+}
+
+.search_hotel input {
+    height: 40px;
+    width: 210px;
+    margin-inline:15px;
+    font-weight: 600;
+    font-size: 1.3rem;
+    border-radius: 10px;
+    box-shadow: 2.5px 2.5px 1px rgba(255,255,255,0.1);
+    outline: none;
+    border: 2px solid gold;
+    background-color: transparent;
+    color: #fff;
+    font-weight: 550;
+}
+
+.search_hotel input::placeholder{
+    padding-inline: 5px;
+    font-size: 0.8em;
+    color: #fff;
+    font-weight: 550;
+    text-align: center;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.center label {
+    position: absolute;
+    top: 23%;
+    left: 23%;
+    color: #fff;
+    font-weight: 550;
+    font-size: 1rem;
+    transition: 1s;
+    z-index: -1;
+}
+.search_hotel input {
+    text-align: center;
+}
+.search_hotel input[type="date"]:empty{
+    color: transparent;
+    text-align: center;
+}
+ 
+.search_hotel input[type="date"]:focus , 
+.search_hotel input[type="date"]:hover , .search_hotel input[type="date"]:not(:empty) {
+    color: #fff;
+}
+
+
+.search_hotel input[type="date"]:focus ~label  , 
+.search_hotel input[type="date"]:hover ~label {
+    top: -17px;
+}
+
+ 
+.search_hotel input[type="submit"]{
+    height: 40px;
+    width: 90px;
+    color: #fff;
+    background-color: goldenrod;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 550;
+    margin-inline:30px;
+    outline: 2px solid #fff;
+}
+
+.container {
+    width: 100%;
+}
+
+.main_container {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 30px #fff;
+    transition: 1s;
+}
+
+.main_container:hover{
+    transform: translateY(-25px);
+}
+
+.container .container1{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height:35vw;
+}
+
+.container .container1 .main_container {
+    height: 80%;
+    width: 30vw;
+}
+
+.container .container2{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height:40vw;
+}
+
+.container .container2 .main_container {
+    height: 80%;
+    width: 47vw;
+}
+
+
+.container .container3{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height:60vh;
+}
+
+.container .container3 .main_container {
+    height: 80%;
+    width: 23vw;
+}
+
+.container4{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height:40vw;
+}
+
+.container .container4 .main_container {
+    height: 80%;
+    width: 95vw;
+}
+
+.container .main_container .container_imagem {
+    width: 100%;
+    height: 100%;
+}
+
+.container .main_container .container_imagem img{
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+.main_container p {
+    position: absolute;
+    bottom: 5px;
+    text-align: center;
+    width: 100%;
+    padding: 15px 0px;
+    font-size: 1.3rem;
+    color: #fff;
+    font-weight: 550;
+}
+
+.main_container .classificacao {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+
+.classificacao label {
+    font-size: 2.5rem;
+    color: #fff;
+}
+
+
+.main_container:nth-child(2n) label {
+    color: gold;
+}
+
+
+.main_container:nth-child(2n+1) label:not(:last-child){
+    color: gold;
+}

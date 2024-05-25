@@ -1,0 +1,56 @@
+*{
+    background-color: black;
+    color: antiquewhite;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+h1{
+    text-align: center;
+    margin: 100px 0px 50px 0px;
+    font-weight: 500;
+    font-style: italic;
+    text-shadow: 0 0 30px gray;
+}
+
+form {
+    border: 2px solid white;
+    margin: 0px auto;
+    height: 100px;
+    width: 300px;
+    border-radius: 20px;
+    position: relative;
+}
+
+input[type="email"]{
+    padding-left: 20px;
+    font-size: 1.1rem;
+    color: goldenrod;
+    border-radius: 20px;
+    border: 2.3px solid grey;
+    width: 90%;
+    height: 30px;
+    margin: 10px 0px 15px 5%;
+    font-style: italic;
+}
+
+input::placeholder{
+    font-style: italic;
+    padding-left: 20px;
+    color: aliceblue;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+input[type="submit"]{
+    height: 30px;
+    width: 35%;
+    margin-left:5%;
+    border:  2.3px solid grey;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+

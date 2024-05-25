@@ -1,0 +1,134 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voos</title>
+    <link rel="stylesheet" href="/css/voos.css">
+    <link rel="stylesheet" href="/css/header_footer.css">
+    <script defer src="/js/voos.js"></script>
+
+</head>
+<body>
+    
+    <header>
+        <input type="checkbox" name="" id="menu_ocultado">
+        <nav class="header">
+            <div class="logo">
+                <img src="/img/logos/logo (1).png" alt=""><span>ADVI</span>
+            </div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/marcacoes">Voos</a></li>
+                <li><a href="/hotel" >Hoteis</a></li>
+                <li><a href="/carros">Carros</a></li>
+                <li><a href="/casas">Casas</a></li>
+                <li><a href="#sobre_nos">Sobre Nós</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="describe">
+            <p> Diga qual é o seu destino que nós levamo-lo até lá </p>
+            <p>Reserve Já o seu Bilhete</p>
+            <input type="button" id="precarios_bilhetes" value="Voos Do Dia ">
+        </div>
+        <form action="/inserirviagens" method="post" class="marcacao">
+            <div class="criterios">
+                <div class="input">
+                    <input type="text" name="tipoBilhete" placeholder="Tipo de Bilhete" list="listas">
+                        <datalist  id="listas" required>
+                            <option  value="Ida apenas">Ida apenas</option>
+                            <option value="Ida e Volta">Ida e Volta</option>
+                        </datalist>
+                   </div>
+                <div class="input">
+                    <input type="number" name="num_pessoas" required placeholder="Numero de Pessoas">
+                </div>
+                <div class="input">
+                    <input type="text" name="classe" list="lista" placeholder="Classe">
+                    <datalist id="lista" >
+                        <option  value="Economica">Economica</option>
+                        <option value="Primeira Classe">Primeira Classe</option>                    
+                        <option value="Mista">Mista</option>
+                        <option value="Segunda Classe">Segunda Classe</option>
+                        <option value="Executiva">Executiva</option>
+                        <option value="Privada">Privada</option>    
+                    </datalist>
+                </div>
+            </div>
+            <div class="criterios2">    
+                <div class="inputdate">
+                    <input type="date" min=""  name="data" id="input_date" required>
+                    <label for="input_date">Data de Partida</label>
+                </div>
+                <input type="text" id="destiny" name="pais" placeholder="Destino (país)" required>
+                <input type="text" id="destiny" name="cidade" placeholder="Destino (Cidade)" required>
+                <input type="submit" value="Reservar" class="marcar_voo">
+            </div>
+        </form>
+    </main>   
+    <footer>
+        <div class="rodape">
+            <div class="describe_text" id="sobre_nos" >
+                <p> ADVI Agência de Viagens Internacionais </p>
+                <div>
+                    ADVI  é uma empresa público ao dispor de todo aquele que quiser
+                    pagar pelo nossos serviços tendo garantias de conforto, segurança e melhor preço disponível.
+                    Viage connosco
+                </div>    
+            </div>
+            <div class="services_informations">
+                <div>
+                    <p>Informação</p>
+                    <ul>
+    
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contacte - nos</a></li>
+                        <li><a href="#">Caracterísiticas</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p>Localização</p>
+                    <ul>
+                        <li><a href="#">Europa</a></li>
+                        <li><a href="#"> Asia</a></li>
+                        <li><a href="#">America</a></li>
+                        <li><a href="#">Africa</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p>Serviços de Transporte</p>                    
+                    <ul>
+                        <li><a href="#">Alimentos</a></li>
+                        <li><a href="#">Carros</a></li>
+                        <li><a href="#">Equipamentos informáticos</a></li>
+                        <li><a href="#">Viagens Particulares</a></li>    
+                    </ul>
+                </div>
+                <div>
+                    <p>Blog</p>
+                    <ul>    
+                        <li><a href="#">Licença</a></li>
+                        <li><a href="#">Converse connosco</a></li>
+                        <li><a href="#">Informações</a></li>
+                        <li><a href="#">Acessória</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="copy">
+            <div>
+                <p> 2024 &copyCopyright ADVI</p>
+                <p> Política Prividade no uso de Cookies e conditions </p>
+            </div>
+            <figure class="redes_sociais">
+                <img src="/img/icones/icons8-linkedin-48.png" alt="Imagem Linkedin">
+                <img src="/img/icones/icons8-telegram-app-48.png" alt="Imagem telegram">
+                <img src="/img/icones/icons8-whatsapp-48.png" alt="Imagem Whatsaap" >
+                <img src="/img/icones/icons8-twitterx-60.svg" alt="Imagem Do Twitter X">
+            </figure>   
+       </div>
+    </footer>
+</body>
+</html>

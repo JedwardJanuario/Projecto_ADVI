@@ -1,0 +1,295 @@
+header {
+    height: 30vh !important;
+}
+
+.esconde {
+    transform: translateY(100vh);
+}
+
+.container {
+    position: fixed;
+    top: -100vh;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: 1.5s;
+}
+
+.container .content {
+    z-index: 10;
+    border: 5px solid #fff;
+    height: 95%;
+    width: 80%;
+    background-color: #fff;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    position: relative;
+}
+
+.container .content label {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 2.8rem;
+    background-color: goldenrod;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.container .content > p {
+    width: 100%;
+    height: 50px;
+    font-size: 3.5rem;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    color: gold;
+    text-shadow: 0 0 5px black;
+}
+
+
+.container .content .bilhetes {
+    width: 18%;
+    height: 35%;
+    border: 2px solid goldenrod;
+    position: relative;
+    border-radius: 10px;
+}
+
+.container .content .bilhetes p:first-of-type{
+    margin: 10px 0px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container .content .bilhetes p {
+    margin: 5px 0px;}
+
+.container .content .bilhetes p:not(p:nth-child(4),p:has(input)){
+    font-size: 1.1rem;
+}
+
+.container .content .bilhetes p:nth-child(4){
+    text-align: center;
+    font-weight: 600;
+}
+
+.personQuant {
+    display: flex;
+    justify-content: space-around;
+}
+.container .content .bilhetes .personQuant input{
+    border: 2px solid #000;
+    width: 70px;
+    height: 25px;
+    background-color: #fff;
+    color: #000;
+    font-weight: bolder;
+    transition: 1s;
+    text-align: center;
+}
+.container .content .bilhetes input[type='button']{
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    border: 2px solid #000;
+    width: 70px;
+    height: 30px;
+    background-color: #fff;
+    color: #000;
+    font-weight: bolder;
+    transition: 1s;
+}
+ .container .content .bilhetes input[type="button"]:hover {
+    background-color: gold;
+ }
+.describe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.describe p {
+    font-size: 2.3rem;
+    color: white;
+    font-weight: 600;
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.describe input{
+    width: 130px;
+    height: 50px;
+    margin:20px 0px 0px 0px;
+    background-color: transparent;
+    border: 2.3px solid goldenrod;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: .5s; 
+}
+
+.describe input:hover{
+    background-color: goldenrod;
+    color: #000;
+}
+
+
+.marcacao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 80px;
+}
+
+
+.criterios {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    min-height: 80px;
+}
+
+.criterios .input {
+    margin-inline: 20px;
+}
+
+.criterios .input {
+    border: 2px solid gold;
+    width: 230px;
+    height: 30px;
+    border-radius: 13px;
+    overflow: hidden;
+}
+
+.criterios .input details , .criterios .input input {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+}
+
+.criterios .input input {
+    outline: none;
+    border: none;
+    overflow: hidden;
+
+}
+
+.criterios .input input::placeholder {
+    color: #fff;
+    font-weight: 600;
+}
+
+.criterios .input select ,.criterios .input datalist select  {
+ 
+    background-color: transparent;
+    width: 100%;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 550;
+    text-align: center;
+    height: 100%;
+    outline: none;
+    border: none;
+}
+
+.criterios .input select optgroup{
+    color: #000;
+    font-weight: 600;
+}
+
+.criterios .input select optgroup option {
+    color: goldenrod;
+    padding: 5px 0px;
+    font-weight: 550;
+}
+
+.criterios2{
+    display: flex;
+    align-items: center;
+}
+
+.criterios2 .inputdate , .criterios2 input {
+    margin-inline: 10px;
+}
+
+.criterios2 .inputdate {
+    position: relative;
+}
+
+.criterios2 .inputdate label {
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    color: gold;
+    font-weight: 700;
+    width: 60%;
+    transition: 1s;
+}
+
+.criterios2 .inputdate input[type="date"]:hover ~label, .criterios2 .inputdate input[type="date"]:focus ~label {
+    top: -50%;
+}
+
+.criterios2 .inputdate input[type="date"]:not(:empty) label {
+    top: -50%;
+}
+
+.criterios2 input:not([type="submit"]){   
+    width: 200px;  
+    height: 30px;
+    background-color: transparent;
+    outline: none;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+    color: gold;
+    font-weight: 600;
+}
+
+.criterios2 .inputdate input[type="date"]:empty{
+    color: transparent;
+}
+
+.criterios2 .inputdate input[type="date"]:hover , .criterios2 .inputdate input[type="date"]:focus  , .criterios2 .inputdate input[type="date"]:not(:empty){
+    color: gold;
+}
+
+.criterios2 input::placeholder {
+    color: gold;
+}
+
+.criterios2 input[type="submit"]{
+    width: 93px;
+    height: 40px;
+    outline: none;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    background-color: gold;
+    color: #fff;
+    font-weight: 650;
+    font-size: 1.1rem;
+}
