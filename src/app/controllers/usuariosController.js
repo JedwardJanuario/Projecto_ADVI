@@ -1,12 +1,17 @@
 import { DadosDeEmail, EnviarEmail } from "../../emails.js";
 import conexao from "../database/conexao.js"
-
+let listaderesultados = []
 let id_usuario
 let viagensCd;
 let usuariosCd
+let user
+let voos
 let arrendamentos
+let arrendamento
 let aluguercarros
+let aluguercarro
 let aluguerhoteis
+let aluguerhotel
 let empresas
 let hoteis
 let carros
@@ -50,6 +55,8 @@ class usuariosController {
                                     else{
                                         const sqlcarros =  ` select * from carros `
                                         conexao.query(sqlcarros,(erro,resultado)=>{                     
+                                        carros = resultado
+                                        console.log(carros)
                                         if(erro)
                                             console.log(erro)
                                         else{
@@ -67,7 +74,83 @@ class usuariosController {
                                                             console.log(erro)
                                                         }
                                                         else{
-                                                            res.render('admin/admin',{empresa:empresas,hotel:hoteis,casa:casas,carro:carros,funcionario:funcionarios})
+                                                            const sqlcasasalugadas = `
+                                                            select u.nome as nome , u.email as email , c.pais as pais , c.cidade as cidade ,  c.preco as preco , r.data_reserva as datareserva 
+                                                            , r.num_dias  as dias
+                                                            from arrendamentos r join casas c on r.idcasa = c.id join usuarios u on r.id_usuario = u.id order by nome;`
+                                                            conexao.query(sqlcasasalugadas,(erro,resultado)=>{
+                                                                arrendamento  = resultado
+                                                                if(erro)
+                                                                    console.log(erro)
+                                                                else{
+                                                                    const sqlvoos = `select u.nome as nome , u.email as email , a.classe as classe, a.cidade as cidade , a.pais as pais ,
+                                                                     a.data as data ,a.tipoBilhete as tipoBilhete 
+                                                                    from agendamentos a join usuarios u on a.id_usuario = u.id order by nome `
+                                                                    conexao.query(sqlvoos,(erro,resultado)=>{
+                                                                        voos = resultado
+                                                                        if(erro)
+                                                                            console.log(erro)
+                                                                        else{
+                                                                            const sqlhoteisalugados = `
+                                                                            select u.nome as nome , u.email as email , h.pais as pais , h.nome as hotel , h.cidade as cidade ,a.preco as preco  , a.num_dias  as dias
+                                                                            from aluguerhoteis a join hoteis h on a.id_hotel = h.id join usuarios u on a.id_usuario = u.id order by nome; `
+                                                                            conexao.query(sqlhoteisalugados,(erro,resultado)=>{
+                                                                                aluguerhotel = resultado 
+                                                                                if(erro)
+                                                                                    console.log(erro)
+                                                                                else{
+                                                                                    const sqlcarrosalugadas = `
+                                                                                    select u.nome as nome , u.email as email , c.marca as marca , c.modelo as modelo , c.valor as valor ,c.tipo as tipo,
+                                                                                     a.local_entrega as entrega , a.local_devolucao  as devolucao
+                                                                                    from aluguercarros a join carros c on a.id_carro = c.id join usuarios u on a.id_usuario = u.id order by nome; `
+                                                                                    
+                                                                                    conexao.query(sqlcarrosalugadas,(erro,resultado)=>{
+                                                                                        aluguercarro = resultado
+                                                                                        console.log(aluguercarro)
+                                                                                        if(erro)
+                                                                                            console.log(erro)
+                                                                                        else{
+                                                                                            const sqlusuarios = "select * from usuarios"
+                                                                                            conexao.query(sqlusuarios,(erro,resultado)=>{
+                                                                                                user = resultado
+                                                                                                if(erro)
+                                                                                                    console.log(erro)
+                                                                                                else{
+                                                                                                    
+                                                                                                    let listadecomandos = [`select  count(id) total from usuarios `,
+                                                                                                    `select count(a.id) total from carros c join aluguercarros a on a.id_carro = c.id join usuarios u on u.id = a.id_usuario`,
+                                                                                                    `select  count(id) total from carros`,
+                                                                                                    `select  count(id) total from cadastros `,
+                                                                                                    `select  count(id) total from hoteis `,
+                                                                                                    `select count(a.id) total from hoteis h join aluguerhoteis a on a.id_hotel = h.id join usuarios u on u.id = a.id_usuario `,
+                                                                                                    `select  count(id) total from empresas `,
+                                                                                                    `select count(a.id) total from casas c join arrendamentos a on a.idcasa = c.id join usuarios u on u.id = a.id_usuario `,
+                                                                                                    `select  count(id) total from casas `,
+                                                                                                    `select count(a.id) total from agendamentos a join usuarios u on u.id = a.id_usuario `]
+                                                                                                    for(let i = 0 ; i < 10 ; i++){    
+                                                                                                        conexao.query(listadecomandos[i],(erro,resultado)=>{
+                                                                                                            if(erro) 
+                                                                                                                console.log(erro)
+                                                                                                            listaderesultados[i] = resultado 
+                                                                                                            if(i == 9){
+                                                                                                                // listaderesultados[0] = [{total:1000}]
+                                                                                                                res.render('admin/admin',{empresa:empresas,hotel:hoteis,casa:casas,carro:carros,funcionario:funcionarios,user:user,arrendamentos:arrendamento,voos:voos,aluguerhoteis:aluguerhotel,aluguercarros:aluguercarro ,lista:listaderesultados})                                           
+                                                            
+                                                                                                            }
+
+                                                                                                        })
+                                                                                                    
+                                                                                                        }
+                                                                                                    }
+                                                                                            })
+                                                                                        }
+                                                                                    })
+                                                                                }
+                                                                            })
+                                                                        }
+                                                                    })      
+                                                                }
+                                                            }) 
                                                         }
                                                     })
                                                     
@@ -106,7 +189,9 @@ class usuariosController {
                                     if(erro)
                                          res.render("paginaErro/erro")
                                     else  {                
-                                        const sqlhoteis = ` select a.id as id ,h.nome as hotel,h.pais as pais,h.cidade as cidade,a.num_dias as dias,a.preco as preco from aluguerhoteis a join hoteis h on a.id_usuario = h.id where id_usuario='${id_usuario}' `
+                                        const sqlhoteis = `select a.id as id ,h.nome as hotel,h.pais as pais,h.cidade as cidade,a.num_dias as dias,a.preco as preco 
+                                        from aluguerhoteis a join hoteis h on a.id_hotel = h.id 
+                                        join usuarios u  on a.id_usuario = u.id where id_usuario='${id_usuario}'`
                                         conexao.query(sqlhoteis,(erro,dadoshoteis)=>{
                                             aluguerhoteis = dadoshoteis
                                             if(erro)
@@ -140,7 +225,6 @@ class usuariosController {
                 conexao.query(listadecomandos[i],(erro,resultado)=>{
                     if(erro)
                         console.log(erro)
-                    console.log(" Dado Apagado : "+i)                
                     })
             } 
             res.render("login-register/login-register")
@@ -187,8 +271,9 @@ class usuariosController {
         const sql = `select * from agendamentos`
         conexao.query(sql,(erro,result)=>{
             viagensCd = result
-            if(erro) console.log(erro)})
-        res.render('admin/admin')        
+            if(erro) 
+                console.log(erro)})
+            res.render('admin/admin',{empresa:empresas,hotel:hoteis,casa:casas,carro:carros,funcionario:funcionarios,user:usuario_admin,arrendamento:casas_admin,voos:voos_admin,aluguerhotel:hoteis_admin,aluguercarro:carros_admin})
     }
 
     async readagendamentosById(req,res){
@@ -259,7 +344,7 @@ class usuariosController {
                     viagensCd = resultado
                     if(erro)
                         console.log(erro)
-                    res.render('logado/logado',{usuario:usuariosCd,viagens:viagensCd,hotel:hoteis,casa:arrendamentos,carro:aluguercarros})
+                        res.render('logado/logado',{usuario:usuariosCd,viagens:viagensCd,aluguerhotel:aluguerhoteis,casa:arrendamentos,carro:aluguercarros})
                 })          
             }
         })
@@ -269,9 +354,10 @@ class usuariosController {
         const sql = `select * from carros`
         conexao.query(sql,(erro,result)=>{
             carros = result
-            if(erro) console.log(erro)})
-        res.render('admin/admin')        
-    }
+            if(erro)
+                console.log(erro)})        
+            res.render('admin/admin',{empresa:empresas,hotel:hoteis,casa:casas,carro:carros,funcionario:funcionarios,user:user,arrendamentos:arrendamento,voos:voos,aluguerhoteis:aluguerhotel,aluguercarros:aluguercarro ,lista:listaderesultados})
+        }
 
     readcarrosByType(req,res){
         const tipo = req.body.tipo
@@ -300,13 +386,30 @@ class usuariosController {
                 res.send(erro)
                 console.log(erro)
             }else{
-                res.render('admin/admin')          
+                const sqlAllCarros = `select * from carros`
+                conexao.query(sqlAllCarros,(erro,resultado)=>{
+                    carros = resultado
+                    if(erro)
+                        console.log(erro)
+                    else{
+                        const sqlCount = `select  count(id) total from carros `
+                        conexao.query(sqlCount , (erro,resultado)=>{
+                            if(erro) console.log(erro)
+                            console.log("Aqui")
+                            console.log(resultado)
+                            listaderesultados[2] = [{total:resultado[0].total}];
+                    
+                            res.render('admin/admin',{empresa:empresas,hotel:hoteis,casa:casas,carro:carros,funcionario:funcionarios,user:user,arrendamentos:arrendamento,voos:voos,aluguerhoteis:aluguerhotel,aluguercarros:aluguercarro ,lista:listaderesultados}) 
+                        })
+                 
+                    }
+                })          
             }
         })             
     }
 
     deletarcarro(req,res){
-        const idcarro = req.body.id
+        const idcarro = req.params.id
         const sql = `delete from carros  where id='${idcarro}'`
         conexao.query(sql,(erro,result)=> {
             if (erro){
@@ -317,9 +420,19 @@ class usuariosController {
                conexao.query(sqlAllCarros,(erro,resultado)=>{
                     carros = resultado
                     if(erro)
-                        console.log(erro)
-                    res.render('admin/admin',{usuario:usuariosCd,viagens:viagensCd})
-               })          
+                        console.log(erro)    
+                    else{
+                        const sqlCount = `select  count(id) total from carros `
+                        conexao.query(sqlCount , (erro,resultado)=>{
+                            if(erro) console.log(erro)
+                            console.log("Aqui")
+                            console.log(resultado)
+                            listaderesultados[2] = [{total:resultado[0].total}];
+                            res.render('admin/admin',{empresa:empresas,hotel:hoteis,casa:casas,carro:carros,funcionario:funcionarios,user:user,arrendamentos:arrendamento,voos:voos,aluguerhoteis:aluguerhotel,aluguercarros:aluguercarro ,lista:listaderesultados}) 
+                        })
+                 
+                    }       
+                })          
             }
         }) 
     
@@ -339,12 +452,13 @@ class usuariosController {
                 res.send(erro)
                 console.log(erro)
             }else{
-                const sqlAllCarros = `select * from carros'`
+                const sqlAllCarros = `select * from carros`
                 conexao.query(sqlAllCarros,(erro,resultado)=>{
                     carros = resultado
                     if(erro)
                         console.log(erro)
-                    res.render('admin/admin',{usuario:usuariosCd,viagens:viagensCd})
+                        res.render('admin/admin',{empresa:empresas,hotel:hoteis,casa:casas,carro:carros,funcionario:funcionarios,user:user,arrendamentos:arrendamento,voos:voos,aluguerhoteis:aluguerhotel,aluguercarros:aluguercarro ,lista:listaderesultados}) 
+    
                 })          
             }
         })
@@ -375,7 +489,7 @@ class usuariosController {
         const nome = req.body.nome
         const pais = req.body.pais
         const cidade = req.body.cidade
-        const num_quartos = req.body.numQuartos
+        const num_quartos = req.body.num_quartos
         const preco = req.body.preco
         const sql = `insert into hoteis
         (nome,pais,cidade,num_quartos,preco) values 
@@ -385,13 +499,28 @@ class usuariosController {
                 res.send(erro)
                 console.log(erro)
             }else{
-                res.render('admin/admin')          
+            const sqlAllHoteis = `select * from hoteis`
+               conexao.query(sqlAllHoteis,(erro,resultado)=>{
+                    hoteis = resultado
+                    if(erro)
+                        console.log(erro)
+                        else{
+                            const sqlCount = `select  count(id) total from hoteis `
+                            conexao.query(sqlCount , (erro,resultado)=>{
+                                if(erro) console.log(erro)
+                                console.log("Aqui")
+                                console.log(resultado)
+                                listaderesultados[4] = [{total:resultado[0].total}];
+                                res.render('admin/admin',{empresa:empresas,hotel:hoteis,casa:casas,carro:carros,funcionario:funcionarios,user:user,arrendamentos:arrendamento,voos:voos,aluguerhoteis:aluguerhotel,aluguercarros:aluguercarro ,lista:listaderesultados}) 
+                            })
+                        }    
+                })          
             }
         })             
     }
 
     deletarhoteis(req,res){
-        const idhotel = req.body.id
+        const idhotel = req.params.id
         const sql = `delete from hoteis  where id='${idhotel}'`
         conexao.query(sql,(erro,result)=> {
             if (erro){
@@ -403,11 +532,20 @@ class usuariosController {
                     hoteis = resultado
                     if(erro)
                         console.log(erro)
-                    res.render('admin/admin',{usuario:usuariosCd,viagens:viagensCd})
+                        else{
+                            const sqlCount = `select  count(id) total from hoteis `
+                            conexao.query(sqlCount , (erro,resultado)=>{
+                                if(erro) console.log(erro)
+                                console.log("Aqui")
+                                console.log(resultado)
+                                listaderesultados[4] = [{total:resultado[0].total}];
+                                res.render('admin/admin',{empresa:empresas,hotel:hoteis,casa:casas,carro:carros,funcionario:funcionarios,user:user,arrendamentos:arrendamento,voos:voos,aluguerhoteis:aluguerhotel,aluguercarros:aluguercarro ,lista:listaderesultados}) 
+                            })
+                     
+                        }
                })          
             }
         }) 
-    
     }
 
     updatehoteis(req,res){
@@ -415,10 +553,11 @@ class usuariosController {
         const nome = req.body.nome
         const pais = req.body.pais
         const cidade = req.body.cidade
-        const num_quartos = req.body.numQuartos
+        const num_quartos = req.body.num_quartos
         const preco = req.body.preco
         const idhotel = req.body.id
-        const sql = `update hoteis set preco='${preco}' nome='${nome}' , pais='${pais}', cidade='${cidade}' ,num_quartos='${num_quartos}' where id='${idhotel}'`
+        const sql = `update hoteis set preco='${preco}' ,nome='${nome}' , pais='${pais}', cidade='${cidade}' ,num_quartos='${num_quartos}' 
+        where id='${idhotel}' `
         conexao.query(sql,(erro,result)=> {
             if (erro){
                 res.send(erro)
@@ -429,7 +568,8 @@ class usuariosController {
                     hoteis = resultado
                     if(erro)
                         console.log(erro)
-                    res.render('admin/admin',{usuario:usuariosCd,viagens:viagensCd})
+                    res.render('admin/admin',{empresa:empresas,hotel:hoteis,casa:casas,carro:carros,funcionario:funcionarios,user:user,arrendamentos:arrendamento,voos:voos,aluguerhoteis:aluguerhotel,aluguercarros:aluguercarro ,lista:listaderesultados}) 
+    
                 })          
             }
         })
@@ -445,7 +585,7 @@ class usuariosController {
 
     readcasasByPlace(req,res){
         const lugar = req.body.lugar
-        const sql = `select * from casas where pais='${lugar}' or cidade='${lugar}'`
+        const sql = `select * from casas where (pais='${lugar}' or cidade='${lugar}') and estado="livre" `
         conexao.query(sql,(erro,result)=>{
             const casasType = result
             if(erro) 
@@ -457,19 +597,36 @@ class usuariosController {
     createcasa(req,res){
         const pais = req.body.pais
         const cidade = req.body.cidade
-        const sql = `insert into casas (pais,cidade) values ('${pais}','${cidade}')`
+        const preco = req.body.preco
+        const sql = `insert into casas (pais,cidade,preco) values ('${pais}','${cidade}','${preco}')`
         conexao.query(sql,(erro,result)=> {
             if (erro){
                 res.send(erro)
                 console.log(erro)
             }else{
-                res.render('admin/admin')          
+                const sqlAllCasas = `select * from casas`
+                conexao.query(sqlAllCasas,(erro,resultado)=>{
+                    casas = resultado
+                    if(erro)
+                        console.log(erro)
+                        else{
+                            const sqlCount = `select  count(id) total from casas `
+                            conexao.query(sqlCount , (erro,resultado)=>{
+                                if(erro) console.log(erro)
+                                console.log("Aqui")
+                                console.log(resultado)
+                                listaderesultados[8] = [{total:resultado[0].total}];
+                                res.render('admin/admin',{empresa:empresas,hotel:hoteis,casa:casas,carro:carros,funcionario:funcionarios,user:user,arrendamentos:arrendamento,voos:voos,aluguerhoteis:aluguerhotel,aluguercarros:aluguercarro ,lista:listaderesultados}) 
+                            })
+                     
+                        }
+                })
             }
         })             
     }
 
     deletarcasa(req,res){
-        const idcasa = req.body.id
+        const idcasa = req.params.id
         const sql = `delete from casas  where id='${idcasa}'`
         conexao.query(sql,(erro,result)=> {
             if (erro){
@@ -481,7 +638,17 @@ class usuariosController {
                     casas = resultado
                     if(erro)
                         console.log(erro)
-                    res.render('admin/admin',{usuario:usuariosCd,viagens:viagensCd})
+                        else{
+                            const sqlCount = `select  count(id) total from casas `
+                            conexao.query(sqlCount , (erro,resultado)=>{
+                                if(erro) console.log(erro)
+                                console.log("Aqui")
+                                console.log(resultado)
+                                listaderesultados[8] = [{total:resultado[0].total}];
+                                res.render('admin/admin',{empresa:empresas,hotel:hoteis,casa:casas,carro:carros,funcionario:funcionarios,user:user,arrendamentos:arrendamento,voos:voos,aluguerhoteis:aluguerhotel,aluguercarros:aluguercarro ,lista:listaderesultados}) 
+                            })
+                     
+                        }
                })          
             }
         }) 
@@ -492,7 +659,8 @@ class usuariosController {
         const pais = req.body.pais
         const cidade = req.body.cidade
         const idcasa = req.body.id
-        const sql = `update casas set pais='${pais}' , cidade='${cidade}' where id='${idcasa}'`
+        const preco = req.body.preco
+        const sql = `update casas set pais='${pais}' , cidade='${cidade}' , preco='${preco}' where id='${idcasa}'`
         conexao.query(sql,(erro,result)=> {
             if (erro){
                 res.send(erro)
@@ -503,7 +671,8 @@ class usuariosController {
                     casas = resultado
                     if(erro)
                         console.log(erro)
-                    res.render('admin/admin',{usuario:usuariosCd,viagens:viagensCd})
+                    res.render('admin/admin',{empresa:empresas,hotel:hoteis,casa:casas,carro:carros,funcionario:funcionarios,user:user,arrendamentos:arrendamento,voos:voos,aluguerhoteis:aluguerhotel,aluguercarros:aluguercarro ,lista:listaderesultados}) 
+    
                 })          
             }
         })
@@ -522,7 +691,7 @@ class usuariosController {
     createcadastro(req,res){
         const nome = req.body.nome
         const bi = req.body.bi
-        const dataNascimento = req.body.dataNasc
+        const dataNascimento = req.body.datanascimento
         const formacao = req.body.formacao
         const workYears = req.body.workyears
         const skills = req.body.skills
@@ -532,13 +701,49 @@ class usuariosController {
         conexao.query(sql,(erro,resultado)=>{
             if(erro)
                 console.log(erro)
-            res.render('index/index')
-        })             
+            res.render('admin/admin',{empresa:empresas,hotel:hoteis,casa:casas,carro:carros,funcionario:funcionarios,user:user,arrendamentos:arrendamento,voos:voos,aluguerhoteis:aluguerhotel,aluguercarros:aluguercarro ,lista:listaderesultados}) 
+    
+            })             
     }
 
+    
+    createcadastroByAdmin(req,res){
+        const nome = req.body.nome
+        const bi = req.body.bi
+        const dataNascimento = req.body.datanascimento
+        const formacao = req.body.formacao
+        const workYears = req.body.workyears
+        const skills = req.body.skills
+        const sql = `insert into cadastros
+        (nome,bi,datanascimento,formacao,anosDeTrabalho,competencias) 
+        values ('${nome}','${bi}','${dataNascimento}','${formacao}','${workYears}','${skills}')`
+        conexao.query(sql,(erro,resultado)=>{
+            if(erro)
+                console.log(erro)
+            else {
+                const sqlfunc = "Select * from cadastros"
+                conexao.query(sqlfunc,(erro,resultado)=>{
+                    funcionarios = resultado
+                    if(erro)
+                        console.log(erro)
+                        else{
+                            const sqlCount = `select  count(id) total from cadastros `
+                            conexao.query(sqlCount , (erro,resultado)=>{
+                                if(erro) console.log(erro)
+                                console.log("Aqui")
+                                console.log(resultado)
+                                listaderesultados[3] = [{total:resultado[0].total}];
+                                res.render('admin/admin',{empresa:empresas,hotel:hoteis,casa:casas,carro:carros,funcionario:funcionarios,user:user,arrendamentos:arrendamento,voos:voos,aluguerhoteis:aluguerhotel,aluguercarros:aluguercarro ,lista:listaderesultados}) 
+                            })
+                     
+                        }
+                })
+            }
+        })             
+    }
     deletarcadastro(req,res){
-        const idcadastro = req.body.id
-        const sql = `delete from cadrastos  where id='${idcadastro}'`
+        const idcadastro = req.params.id
+        const sql = `delete from cadastros  where id='${idcadastro}'`
         conexao.query(sql,(erro,result)=> {
             if (erro){
                 res.send(erro)
@@ -548,8 +753,18 @@ class usuariosController {
                conexao.query(sqlAllCadastro,(erro,resultado)=>{
                     funcionarios = resultado
                     if(erro)
-                        console.log(erro)
-                    res.render('admin/admin',{usuario:usuariosCd,viagens:viagensCd})
+                        console.log(erro) 
+                        else{
+                            const sqlCount = `select  count(id) total from cadastros `
+                            conexao.query(sqlCount , (erro,resultado)=>{
+                                if(erro) console.log(erro)
+                                console.log("Aqui")
+                                console.log(resultado)
+                                listaderesultados[3] = [{total:resultado[0].total}];
+                                res.render('admin/admin',{empresa:empresas,hotel:hoteis,casa:casas,carro:carros,funcionario:funcionarios,user:user,arrendamentos:arrendamento,voos:voos,aluguerhoteis:aluguerhotel,aluguercarros:aluguercarro ,lista:listaderesultados}) 
+                            })
+                     
+                        }
                })          
             }
         }) 
@@ -559,14 +774,14 @@ class usuariosController {
     updatecadastro(req,res){
         const nome = req.body.nome
         const bi = req.body.bi
-        const dataNascimento = req.body.dataNasc
+        const dataNascimento = req.body.datanascimento
         const formacao = req.body.formacao
         const workYears = req.body.workyears
         const skills = req.body.skills
         const idcadastro = req.body.id
         const sql = `update cadastros set 
-        nome='${nome}',bi='${bi}','datanascimento=${dataNascimento}',formacao='${formacao}'
-        ,anosDeTrabalho='${workYears}',competencias='${skills}' where id='${idcadastro}' `
+        nome='${nome}', bi='${bi}',datanascimento='${dataNascimento}',formacao='${formacao}'
+        , anosDeTrabalho ='${workYears}', competencias='${skills}' where id='${idcadastro}' `
         conexao.query(sql,(erro,result)=> {
             if (erro){
                 res.send(erro)
@@ -577,7 +792,7 @@ class usuariosController {
                     funcionarios = resultado
                     if(erro)
                         console.log(erro)
-                    res.render('admin/admin',{usuario:usuariosCd,viagens:viagensCd})
+                    res.render('admin/admin',{empresa:empresas,hotel:hoteis,casa:casas,carro:carros,funcionario:funcionarios,user:user,arrendamentos:arrendamento,voos:voos,aluguerhoteis:aluguerhotel,aluguercarros:aluguercarro ,lista:listaderesultados}) 
                 })          
             }
         })
@@ -649,8 +864,7 @@ class usuariosController {
         const data_reserva = req.body.data_reserva
         const num_dias = req.body.num_dias
         const idcasa = req.body.idcasa
-        const estado = "Ocupado"
-        const sql = `update casas set estado='${estado}' where id='${idcasa}'` 
+        const sql = `update casas set estado='Ocupado' where id='${idcasa}'` 
         conexao.query(sql,(erro,resultado)=>{
             if(erro)
                 console.log(erro)

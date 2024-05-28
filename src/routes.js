@@ -31,6 +31,14 @@ routes.post('/inserirviagens',usuariosController.createagendamentos)
 
 //rotas do carro
 routes.post('/buscarCarros',usuariosController.readcarrosByType)
+routes.post('/deletarcarro/:id',usuariosController.deletarcarro)
+routes.post('/actualizarcarro',usuariosController.updateacarro)
+routes.post('/adicionarcarro',usuariosController.createcarros)
+
+//rotas dos funcionarios by Admin
+routes.post('/deletarfuncionario/:id',usuariosController.deletarcadastro)
+routes.post('/actualizarfuncionario',usuariosController.updatecadastro)
+routes.post('/adicionarfuncionario',usuariosController.createcadastroByAdmin)
 
 //rotas do aluguercarros
 routes.post('/alugarCarro',usuariosController.createaluguercarro)
@@ -44,9 +52,15 @@ routes.post('/actualizaraluguerhotel',usuariosController.updatealuguerhoteis)
 
 //rotas da casas
 routes.post('/Buscarcasas',usuariosController.readcasasByPlace)
+routes.post('/deletarcasa/:id',usuariosController.deletarcasa)
+routes.post('/actualizarcasa',usuariosController.updatecasas)
+routes.post('/adicionarcasa',usuariosController.createcasa)
 
 //rotas do hotel
 routes.post('/BuscarhotelPorLugar',usuariosController.readhotelByPlace)
+routes.post('/deletarhotel/:id',usuariosController.deletarhoteis)
+routes.post('/actualizarhotel',usuariosController.updatehoteis)
+routes.post('/adicionarhotel',usuariosController.createhotel)
 
 //rotas do arrendamento
 routes.post('/alugarcasas',usuariosController.createarrendamento)

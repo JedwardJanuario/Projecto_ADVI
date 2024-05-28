@@ -70,9 +70,9 @@
                  <button class="alugar">Alugar</button>    
              <%};%>
              <form action="/alugarcasas" method="post" class="esconderForm formulario">
-                 <input type="number" required placeholder="Numero do Casa" name="idcasa">
-                 <input type="date" required placeholder="Data de Reserva" name="data_reserva">
-                 <input type="number" required placeholder="Numero de Dias" name="num_dias">
+                 <input type="number" min="1"  required placeholder="Numero da Casa" name="idcasa">
+                 <input type="date" min="2024-05-30"  max="2099-12-31" required placeholder="Data de Reserva" name="data_reserva">
+                 <input type="number" min="1" required placeholder="Numero de Dias" name="num_dias">
                  <input type="submit" value="Efectuar Aluguer" class="efectuarAluguer">
              </form>
          </div> 

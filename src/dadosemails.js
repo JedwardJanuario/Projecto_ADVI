@@ -1,2 +1,2 @@
-export const email = "youremail"
-export const senha = "yourpassword"
+export const email = "YourEmail"
+export const senha = "YourPassword"

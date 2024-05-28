@@ -110,6 +110,7 @@
                                         <td><%-dado.cidade %></td>
                                         <td>
                                             <div class="containerOptions">
+                          
                                                 <form class="otherforms" action="/deletarviagens/<%- dado.id %>" method="post">
                                                     <button>Deletar</button>
                                                 </form>
@@ -119,51 +120,50 @@
                                     </tr>
                                     <%});%>
                             </tbody>      
-                        </table>
-                        <div class="containerOptions">                     
-                            <div class="otherforms">
-                                <button class="buttonActualizars" type="submit">Editar</button>
-                            </div>
-                        </div>
-                        <form action="/actualizarviagens" method="post" class="formularios">
-                            <div class="inputs">
-                                <input type="text" required name="id">
-                                <label for="">Numero do voo</label>
-                            </div>
-                            <div class="inputs">
-                                <input type="text" required name="tipoBilhete">
-                                <label for="">Tipo de Bilhete</label>
-                            </div>
-                            
-                            <div class="inputs">
-                                <input  type="text" required name="num_pessoas">
-                                <label for="">Numero de Pessoas</label>
-                            </div>
-                            
-                            <div class="inputs">
-                                <input  type="text" required name="classe">
-                                <label for="">Classe</label>
-                            </div>
-                            
-                            <div class="inputs">
-                                <input  type="date" required name="data">
-                                <label for="">Data</label>
-                            </div>
-                            
-                            <div class="inputs">
-                                <input  type="text" required name="pais">
-                                <label for="">País</label>
-                            </div>
-                            
-                            <div class="inputs">
-                                <input  type="text" required name="cidade">
-                                <label for="">Cidade</label>
-                            </div>
-                            <input type="submit" value="Actualizar">             
-                        </form>
-                        
-                      
+                        </table>    
                     <%};%>
+                    <div class="containerOptions">                     
+                        <div class="otherforms">
+                            <button class="buttonActualizars" type="submit">Editar</button>
+                        </div>
+                    </div>
+                    <form action="/actualizarviagens" method="post" class="formularios">
+                        <div class="inputs">
+                            <input type="text" min="1" required name="id">
+                            <label for="">Numero do voo</label>
+                        </div>
+                        <div class="inputs">
+                            <input type="text" required name="tipoBilhete">
+                            <label for="">Tipo de Bilhete</label>
+                        </div>
+                        
+                        <div class="inputs">
+                            <input  type="text" min="1" required name="num_pessoas">
+                            <label for="">Numero de Pessoas</label>
+                        </div>
+                        
+                        <div class="inputs">
+                            <input  type="text" required name="classe">
+                            <label for="">Classe</label>
+                        </div>
+                        
+                        <div class="inputs">
+                            <input min="2024-05-30"  max="2099-12-31" type="date" required name="data">
+                            <label for="">Data</label>
+                        </div>
+                        
+                        <div class="inputs">
+                            <input  type="text" required name="pais">
+                            <label for="">País</label>
+                        </div>
+                        
+                        <div class="inputs">
+                            <input  type="text" required name="cidade">
+                            <label for="">Cidade</label>
+                        </div>
+                        <input type="submit" value="Actualizar">             
+                    </form>
+                
          
                 </div>
                 <div class="painel">
@@ -200,27 +200,26 @@
                                     </tr>
                                     <%});%>
                             </tbody>      
-                        </table>
-                        <div class="containerOptions">                     
-                            <div class="otherforms">
-                                <button class="buttonActualizars btnupdate1" type="submit">Editar</button>
-                            </div>
-                        </div>
-                        <form action="/actualizaraluguerhotel" method="post" class="formularios form1">
-                            <div class="inputs">
-                                <input type="text" required name="id">
-                                <label for="">Numero do Aluguer</label>
-                            </div>
-                            
-                            <div class="inputs">
-                                <input  type="text" required name="num_dias">
-                                <label for="">Numero de Dias</label>
-                            </div>
-                            <input type="submit" value="Actualizar">             
-                        </form>
-                        
-                      
+                        </table>                      
                     <%};%>
+                    <div class="containerOptions">                     
+                        <div class="otherforms">
+                            <button class="buttonActualizars btnupdate1" type="submit">Editar</button>
+                        </div>
+                    </div>
+                    <form action="/actualizaraluguerhotel" method="post" class="formularios form1">
+                        <div class="inputs">
+                            <input type="text" required name="id" min="1">
+                            <label for="">Numero do Aluguer</label>
+                        </div>
+                        
+                        <div class="inputs">
+                            <input  type="text" required name="num_dias" min="1">
+                            <label for="">Numero de Dias</label>
+                        </div>
+                        <input type="submit" value="Actualizar">             
+                    </form>
+                    
                 </div>
                 <div class="painel">
                     <% if(carro == 0 || carro == null ){ %>
@@ -256,34 +255,33 @@
                                     </tr>
                                     <%});%>
                             </tbody>      
-                        </table>
-                        <div class="containerOptions">                     
-                            <div class="otherforms">
-                                <button class="buttonActualizars btnupdate2" type="submit">Editar</button>
-                            </div>
-                        </div>
-                        <form action="/actualizaraluguercarro" method="post" class="formularios form2">
-                            <div class="inputs">
-                                <input type="text" required name="id">
-                                <label for="">Numero do Aluguer</label>
-                            </div>
-                            
-                            <div class="inputs">
-                                <input  type="text" required name="localEntrega">
-                                <label for="">Local De Entrega</label>
-                            </div>
-                            <div class="inputs">
-                                <input  type="text" required name="localDevolucao">
-                                <label for="">Local De Devolucao</label>
-                            </div>
-                            <input type="submit" value="Actualizar">             
-                        </form>
-                        
-                      
+                        </table>                     
                     <%};%>
+                    <div class="containerOptions">                          
+                        <div class="otherforms">
+                            <button class="buttonActualizars" id="btnupdate2" type="submit">Editar</button>
+                        </div>
+                    </div>
+                    <form action="/actualizaraluguercarro" method="post" class="formularios form2">
+                        <div class="inputs">
+                            <input type="text" required name="id" min="1">
+                            <label for="">Numero do Aluguer</label>
+                        </div>
+                        
+                        <div class="inputs">
+                            <input  type="text" required name="localEntrega">
+                            <label for="">Local De Entrega</label>
+                        </div>
+                        <div class="inputs">
+                            <input  type="text" required name="localDevolucao">
+                            <label for="">Local De Devolucao</label>
+                        </div>
+                        <input type="submit" value="Actualizar">             
+                    </form>
+           
                 </div>
                 <div class="painel">
-                    <% if(casa == 0 || carro == casa ){ %>
+                    <% if(casa == 0 || casa == 0 ){ %>
                         <p style="font-size: 2rem;color: black;font-weight: 600;text-align: center;padding: 20px 5px;"> Sem Casas Alugadas ! </p>
                     <%}else{ %>
                         <table>
@@ -311,34 +309,35 @@
                                                 <form class="otherforms" action="/deletaraluguercasa/<%- dado.id %>" method="post">
                                                     <button>Deletar</button>
                                                 </form>
-                                            </div>                
+                                            </div> 
+               
                                         </td>
                                     </tr>
                                     <%});%>
                             </tbody>      
                         </table>
-                        <div class="containerOptions">                     
-                            <div class="otherforms">
-                                <button class="buttonActualizars btnupdate3" type="submit">Editar</button>
-                            </div>
-                        </div>
-                        <form action="/actualizaraluguercasa" method="post" class="formularios form3">
-                            <div class="inputs">
-                                <input type="text" required name="id">
-                                <label for="">Numero do Aluguer</label>
-                            </div>
-                            
-                            <div class="inputs">
-                                <input  type="number" required name="num_dias">
-                                <label for="">Número de Dias</label>
-                            </div>
-                            <div class="inputs">
-                                <input  type="date" required name="data_reserva">
-                                <label for="">Data da reserva</label>
-                            </div>
-                            <input type="submit" value="Actualizar">             
-                        </form>
                     <%};%>
+                                                                
+                    <div class="containerOptions">                     
+                        <div class="otherforms">
+                            <button onclick="mostraForm()" class="btnupdatecasa" type="submit">Editar</button>
+                        </div>
+                    </div>
+                    <form action="/actualizaraluguercasa" method="post" class="formcasa">
+                        <div class="inputs">
+                            <input  type="number" min="1" required name="id">
+                            <label for="">Número do Aluguer </label>
+                        </div>
+                        <div class="inputs">
+                            <input  type="number" min="1" required name="num_dias">
+                            <label for="">Número de Dias</label>
+                        </div>
+                        <div class="inputs">
+                            <input  type="date" min="2024-05-30"  max="2099-12-31" required name="data_reserva">
+                            <label for="">Data da reserva</label>
+                        </div>
+                        <input type="submit" value="Actualizar">             
+                    </form>
                 </div>
     
             </div>

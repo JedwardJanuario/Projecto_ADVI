@@ -32,8 +32,8 @@
         <form action="/criarconta" method="post" class="container register altura">
             <h2>Cadastro</h2>
             <div class="inputs">
-                <input type="text" required name="cnome">
-                <label for="nome">Nome de Usuário</label>
+                <input type="text" maxlength="50" required name="cnome">
+                <label for="nome"  >Nome de Usuário</label>
                 <img src="/img/icones/icons8-usuário-48.png" alt="Usuário"> 
             </div>           
             <div class="inputs">
@@ -42,12 +42,12 @@
             <img src="/img/icones/icons8-nova-mensagem-60.png" alt="Usuário"> 
             </div>
             <div class="inputs">
-                <input  type="password" required name="csenha"  class="inputpassword2">
+                <input  type="password" required minlength="4" name="csenha"  class="inputpassword2">
                 <label for="nome">Senha</label>
                 <img class="img_block2" src="/img/icones/icons8-trancar-60.png" alt="Usuário">
             </div>
             <div class="inputs">
-                <input type="password" required class="inputpassword3">
+                <input type="password" minlength="4" required class="inputpassword3">
                 <label for="nome">Confirme Senha</label>
                 <img  class="img_block3" src="/img/icones/icons8-trancar-60.png" alt="Usuário">
             </div>            

@@ -42,7 +42,7 @@
                         </datalist>
                    </div>
                 <div class="input">
-                    <input type="number" name="num_pessoas" required placeholder="Numero de Pessoas">
+                    <input type="number" min="1" name="num_pessoas" required placeholder="Numero de Pessoas">
                 </div>
                 <div class="input">
                     <input type="text" name="classe" list="lista" placeholder="Classe">
@@ -58,7 +58,7 @@
             </div>
             <div class="criterios2">    
                 <div class="inputdate">
-                    <input type="date" min=""  name="data" id="input_date" required>
+                    <input type="date" min="2024-05-30"  max="2099-12-31"  name="data" id="input_date" required>
                     <label for="input_date">Data de Partida</label>
                 </div>
                 <input type="text" id="destiny" name="pais" placeholder="Destino (país)" required>

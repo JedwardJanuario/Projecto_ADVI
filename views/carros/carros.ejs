@@ -73,7 +73,7 @@
                 <button class="alugar">Alugar</button>
             <%};%>
             <form action="/alugarCarro" method="post" class="esconderForm formulario">
-                <input type="number" required placeholder="Numero do Carro" name="idcarro">
+                <input type="number" required placeholder="Numero do Carro" min="1" name="idcarro">
                 <input type="text" required placeholder="local de Entrega cidade e país" name="localEntrega">
                 <input type="text" required placeholder="local de Devolução cidade e país" name="localDevolucao">
                 <input type="submit" value="Efectuar Aluguer" class="efectuarAluguer">

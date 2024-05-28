@@ -65,8 +65,8 @@
                     <button class="alugar">Alugar</button>
                 <%};%>
                 <form action="/alugarHotel" method="post" class="esconderForm formulario">
-                    <input type="number" required placeholder="Numero do Hotel" name="idhotel">
-                    <input type="number" required placeholder="Numero de Dias" name="num_dias">
+                    <input type="number" min="1" required placeholder="Numero do Hotel" name="idhotel">
+                    <input type="number" min="1" required placeholder="Numero de Dias" name="num_dias">
                     <input type="submit" value="Efectuar Aluguer" class="efectuarAluguer">
                 </form>
             </div>    
