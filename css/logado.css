@@ -258,3 +258,28 @@ td {
     background-color: white;
 
 }
+
+.formcasa{
+    position: absolute;
+    display: none;
+    width: 275px;
+    min-height: 300px;
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.5);
+    top: 20px;
+    left: 350px;
+}
+
+.formcasa input[type="submit"]{
+    margin-left: 10%;
+    width: 115px;
+    height: 35px;
+    border: 2px solid white;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    color: black;
+    font-weight: 600;
+    background-color: white;
+
+}

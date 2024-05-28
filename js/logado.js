@@ -59,18 +59,17 @@ const formulario1 = document.querySelector('.form1')
 buttonActualizar1.addEventListener('click',()=>{
     formulario1.style.display ="block";
 })
-
-
-const buttonActualizar2 = document.querySelector('.btnupdate2')
+ 
+const buttonActualizar2 = document.querySelector('#btnupdate2')
 const formulario2 = document.querySelector('.form2')
-
 buttonActualizar2.addEventListener('click',()=>{
-    formulario2.style.display ="block";
+    formulario2.style.display = "block"
 })
 
-const buttonActualizar3 = document.querySelector('.btnupdate3')
-const formulario3 = document.querySelector('.form3')
 
-buttonActualizar3.addEventListener('click',()=>{
-    formulario3.style.display ="block";
-})
+const buttonActualizar3 = document.querySelector('button.btnupdatecasa')
+const formulario3 = document.querySelector('.formcasa')
+function mostraForm(){
+    formulario3.style.display ="block"
+}
+
